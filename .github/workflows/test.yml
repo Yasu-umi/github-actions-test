@@ -43,8 +43,7 @@ jobs:
 
       - name: Up
         run: |
-          docker compose version
-          docker buildx build .
+          docker buildx bake -f docker-compose.yml
           docker compose up -d
 
       - name: Cache Mypy
