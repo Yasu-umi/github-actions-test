@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  app:
+    image: test
+    container_name: test
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /usr/local/test
+    tty: true
+    stdin_open: true
+    command: /bin/bash
+    volumes:
+      - .:/usr/local/test:cached
+      - dummy_volume:/usr/local/test/.venv
+
+volumes:
+  dummy_volume: null
