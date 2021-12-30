@@ -6,6 +6,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      COMPOSE_DOCKER_CLI_BUILD: 1
 
     steps:
       - uses: actions/checkout@v2
@@ -41,6 +43,7 @@ jobs:
 
       - name: Up
         run: |
+          docker compose version
           docker buildx build .
           docker compose up -d
 
