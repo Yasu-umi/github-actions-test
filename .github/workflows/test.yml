@@ -28,7 +28,7 @@ jobs:
         with:
           context: .
           push: false
-          tags: user/app:latest
+          tags: test:latest
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new
         # This ugly bit is necessary if you don't want your cache to grow forever
@@ -43,7 +43,6 @@ jobs:
 
       - name: Up
         run: |
-          docker buildx bake -f docker-compose.yml
           docker compose up -d
 
       - name: Cache Mypy
