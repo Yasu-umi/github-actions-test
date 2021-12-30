@@ -5,12 +5,7 @@ on:
 
 jobs:
   build:
-
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
@@ -24,19 +19,18 @@ jobs:
         uses: actions/cache@v2
         with:
           path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}-buildxxs
+          key: ${{ hashFiles('**/poetry.lock') }}-buildxxs
 
       - name: Up
         run: |
           docker compose up -d
-
 
       - name: Cache Mypy
         uses: actions/cache@v2
         id: mypy
         with:
           path: .mypy_cache
-          key: ${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}-mypy
+          key: ${{ hashFiles('**/poetry.lock') }}-mypy
 
       - name: Mypy
         run: |
