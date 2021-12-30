@@ -41,6 +41,7 @@ jobs:
 
       - name: Up
         run: |
+          docker buildx build .
           docker compose up -d
 
       - name: Cache Mypy
