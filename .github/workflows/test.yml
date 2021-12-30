@@ -28,7 +28,7 @@ jobs:
       - name: Build cache
         run: |
           docker builder build . --cache-from type=local,src=/tmp/.buildx-cache --cache-to type=local,dest=/tmp/.buildx-cache-new
-          docker builder bake -f docker-compose.yml --load
+          docker builder bake -f docker-compose.yml --load --set *.cache-from=type=local,src=/tmp/.buildx-cache-new
           rm -rf /tmp/.buildx-cache
           mv /tmp/.buildx-cache-new /tmp/.buildx-cache
 
