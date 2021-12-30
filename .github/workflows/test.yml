@@ -43,7 +43,7 @@ jobs:
 
       - name: Up
         run: |
-          docker builder bake -f docker-compose.yml
+          docker builder bake -f docker-compose.yml --load
           docker compose up -d
 
       - name: Cache Mypy
